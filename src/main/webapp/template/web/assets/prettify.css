@@ -1,0 +1,124 @@
+/* ---
+  Modified theme by Sykot.com
+  Read more: http://www.sykot.com/?p=323
+--- */
+/*ecf5f2*/
+/*fbfcfb*/
+pre {
+  background-color: #ecf5f2;
+  max-width: 100%;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+pre.prettyprint .pln {
+  color: #000
+}
+@media screen {
+  pre.prettyprint .str {
+    color: #080
+  }
+  pre.prettyprint .kwd {
+    color: #008
+  }
+  pre.prettyprint .com {
+    color: #000
+		font-weight: bold
+	
+  }
+  pre.prettyprint .typ {
+    color: #000
+  }
+  pre.prettyprint .lit {
+    color: #066
+  }
+  pre.prettyprint .pun,
+  pre.prettyprint .opn,
+  pre.prettyprint .clo {
+    color: #FF0000
+  }
+  pre.prettyprint .tag {
+    color: #008
+  }
+  pre.prettyprint .atn {
+    color: #606
+  }
+  pre.prettyprint .atv {
+    color: #080
+  }
+  pre.prettyprint .dec,
+  pre.prettyprint .var {
+    color: #606
+  }
+  pre.prettyprint .fun {
+    color: red
+  }
+}
+@media print,
+projection {
+  pre.prettyprint .str {
+    color: #060
+  }
+  pre.prettyprint .kwd {
+    color: #0000CC;
+    font-weight: bold
+  }
+  pre.prettyprint .com {
+    color: #600;
+    font-style: italic
+  }
+  pre.prettyprint .typ {
+    color: #404;
+    font-weight: bold
+  }
+  pre.prettyprint .lit {
+    color: #044
+  }
+  pre.prettyprint .pun,
+  pre.prettyprint .opn,
+  pre.prettyprint .clo {
+    color: #440
+	font-weight: 900
+  }
+  pre.prettyprint .tag {
+    color: #006;
+    font-weight: bold
+  }
+  pre.prettyprint .atn {
+    color: #404
+  }
+  pre.prettyprint .atv {
+    color: #060
+  }
+}
+pre.prettyprint {
+  padding: 20px;
+  border: 1px solid #EEE;
+  border-radius: 4px;
+}
+ol.linenums {
+  margin: 0 0 0 -5px;
+  color: #999;
+}
+ol.linenums li {
+  padding: 0px 10px;
+  border-left: 3px solid #F9F9F9;
+}
+
+/* li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L5,
+li.L6,
+li.L7,
+li.L8 {
+  list-style-type: none
+}
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 {
+  background: #eee
+} */
