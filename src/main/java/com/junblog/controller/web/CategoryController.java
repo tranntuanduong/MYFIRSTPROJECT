@@ -10,6 +10,7 @@ public class CategoryController {
 	@RequestMapping(value = "/category", method = RequestMethod.GET)
 	public ModelAndView homePage() {
 		ModelAndView mav = new ModelAndView("web/category");
+		
 		return mav;
 	}
 }

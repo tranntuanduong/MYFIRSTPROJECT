@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
-<c:url var="builddingAPI" value="/api-admin-building"/>
-<c:url var = "buildingURL" value = "/admin-building"/>
+<c:url var="blogURL" value="/api/blog"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +22,7 @@
 			<div class="page-content">
 				<div class="row">
 					<div class="col-xs-12">
-						<form class="form-horizontal" role="form" id="formEdit">
+						<form:form class="form-horizontal" method="post" id="formEdit" modelAttribute="model">
 							<div class="form-group">
 								<div class="col-sm-3">
 									<label><b>Tiêu đề</b></label>
@@ -39,7 +38,21 @@
 									<label><b>Thể loại</b></label>
 								</div>
 								<div class="col-sm-3">
-									check box ?
+									<!-- test check box in dropdown -->
+										<div class="container">
+										  <div class="row">
+										       <div class="col-lg-6">
+											     <div class="button-group">
+											        <button class="btn btn-primary" type="button" data-toggle="dropdown">Thể loại<span ></span> <span class="caret"></span></button>
+													<ul class="dropdown-menu">
+														<c:forEach var="item" items="${categorys}">
+															<li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox" name="cagegoryId" value="${item.id}"/>&nbsp;${item.name}</a></li>
+														</c:forEach>
+													</ul>
+											 	 </div>
+												</div>
+										  </div>
+										</div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -47,7 +60,21 @@
 									<label><b>Tags</b></label>
 								</div>
 								<div class="col-sm-3">
-									check box ?
+									<!-- test check box in dropdown -->
+										<div class="container">
+										  <div class="row">
+										       <div class="col-lg-6">
+											     <div class="button-group">
+											        <button class="btn btn-primary" type="button" data-toggle="dropdown">Tags<span ></span> <span class="caret"></span></button>
+													<ul class="dropdown-menu">
+														<c:forEach var="item" items="${tags}">
+															<li><a class="small"><input type="checkbox" name="tagId" value="${item.id}"/>&nbsp;${item.name}</a></li>
+														</c:forEach>
+													</ul>
+											 	 </div>
+												</div>
+										  </div>
+										</div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -56,14 +83,15 @@
 								</div>
 								<div class="col-sm-6">
 									<div class="fg-line">
-										<input type="text" class="form-control input-sm" name="ward" value="${model.shortDescription}"/>
+										<input type="text" class="form-control input-sm" name="shortDescription" value="${model.shortDescription}"/>
 									</div>
 								</div>
 							</div>
 							
-								<div class="form-group">
+							
+							<div class="form-group">
 								<div class="col-sm-3">
-									<label><b>Hình ảnh cho sản phẩm</b></label>						
+									<label><b>Ảnh blog</b></label>						
 								</div>
 								<div class="col-sm-3">
 									<div class="fg-line">
@@ -73,8 +101,22 @@
 									</div>
 								</div>
 							</div>
-							<input type="hidden" name="id" value="${model.id}" id="buildingId"/>
-							</form>
+							<!-- content -->
+							<div class="form-group">
+								<div class="col-sm-1">
+									<label><b>Nội dung</b></label>
+								</div>
+								<div class="col-sm-9">
+									<div class="fg-line">										
+										<textarea rows="4" cols="50" name="content" id="content">${model.content}</textarea>
+									</div>
+								</div>
+							</div>
+							<input type="hidden" name="id" value="${model.id}" id="blogId"/>
+							
+							
+							</form:form>
+								
 							<div class="form-group">
 								<c:if test="${empty model.id}">
 									<div class = "col-sm-1 col-sm-offset-3">
@@ -90,71 +132,97 @@
 					</div>
 				</div>
 			</div>
+			
+			
 		</div>
 	</div>
 	<!-- /.main-content -->
 <script type="text/javascript">
-	$( "#btnAddOrUpdateBuilding" ).click(function() {
-	  	addOrUpdateBuilding();
+	var editor = '';
+	$(document).ready(function(){
+		editor = CKEDITOR.replace('content');
+	});
+	
+	$( "#btnAddOrUpdateBlog" ).click(function() {
+	  	addOrUpdateBlog();
 	});	
 	
-	function addOrUpdateBuilding() {
-		var buildingId = $('#buildingId').val();
+	function addOrUpdateBlog() {
+		var blogId = $('#blogId').val();
 		var formData = $('#formEdit').serializeArray();
 		var data = {};
-		var buildingTypes = [];
+		var categoryIds = [];
+		var tagIds = [];
 		$.each(formData, function (index, v ) {
-			if (v.name == 'buildingTypes') {
-				buildingTypes.push(v.value);
-			} else {
+			if (v.name != 'cagegoryId' && v.name != 'tagId') {
 				data[""+v.name+""] = v.value;
-			}			
+			} else if(v.name != 'tagId') {
+				categoryIds.push(v.value);
+			} else {
+				tagIds.push(v.value);
+			}
 		});
-		data['buildingTypes'] = buildingTypes;
-		var dataArray = $('input[name="staffId"]:checked').map(function () {
-			return $(this).val();			
-		}).get();
-		data['ids'] = dataArray;
-		if (buildingId =='') {
-			addBuilding(data);
+		data['content'] = editor.getData();
+		data['categoryIds'] = categoryIds;
+		data['tagIds'] = tagIds;
+		if (blogId =='') {
+			addBlog(data);
 		} else {
-			editBuilding(data, buildingId);
+			editBlog(data, blogId);
 		}
 	}
 	
-	function addBuilding(data,id) {
+	function addBlog(data,id) {
 		$.ajax({
-			//url: '${builddingAPI}',
-			url : 'http://localhost:8087/api/building',
+			url: '${blogURL}',
 			data: JSON.stringify(data),
 			type: 'POST',	
 			contentType: 'application/json',
 			dataType: 'json',
 	
 			success: function(data) {
-				window.location.href = "${buildingURL}?action=EDIT&id="+data.id+"&message=insert_success";
+				//window.location.href = "${buildingURL}?action=EDIT&id="+data.id+"&message=insert_success";
 			},		
 			error: function() {
-				window.location.href = "${buildingURL}?action=LIST&message=insert_success";
+				//window.location.href = "${buildingURL}?action=LIST&message=insert_success";
 			}
 		});
 	}
-	function editBuilding(data, id) {
+	function editBlog(data, id) {
 		$.ajax({
-			//url: '${builddingAPI}',
-			url : 'http://localhost:8087/api/building',
+			url: '${blogURL}',
 			data: JSON.stringify(data),
 			type: 'PUT',	
 			contentType: 'application/json',	
 			success: function(data) {
-				window.location.href = "${buildingURL}?action=EDIT&id="+id+"&message=update_success";
+				//window.location.href = "${buildingURL}?action=EDIT&id="+id+"&message=update_success";
 			},		
 			error: function() {
-				window.location.href = "${buildingURL}?action=LIST&message=errorsystem";
+				//window.location.href = "${buildingURL}?action=LIST&message=errorsystem";
 			}
 		});
 	}	
+	
+	
+	var options = [];
+	$( '.dropdown-menu a' ).on( 'click', function( event ) {
+	   var $target = $( event.currentTarget ),
+	       val = $target.attr( 'data-value' ),
+	       $inp = $target.find( 'input' ),
+	       idx;
+	   if ( ( idx = options.indexOf( val ) ) > -1 ) {
+	      options.splice( idx, 1 );
+	      setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
+	   } else {
+	      options.push( val );
+	      setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
+	   }
+	   $( event.target ).blur();   
+	   console.log( options );
+	   return false;
+	});
 </script>
+
 </body>
 </html>
 

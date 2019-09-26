@@ -51,163 +51,26 @@
 		            </div>
               <div class="row">
                 <div class="container">
-					<div class="card-columns">	
-						<div class="card">
-							<a href="web-content" class="blog-entry element-animate" data-animate-effect="fadeIn">
-								<img src="template/web/images/img_7.jpg" alt="Image placeholder">
-								<div class="blog-content-body">
-								  <h2>Làm thế nào để thiết kế 1 web đẹp ?</h2>
-								  <p class="card-text">chiều nay không có mưa bay ướt trên đôi bờ vai, chiều nay không có mắt em cười như lúc xưa</p>
-								</div>
-							  </a>
-						</div>
-						<div class="card">
-							<a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-								<img src="template/web/images/img_7.jpg" alt="Image placeholder">
-								<div class="blog-content-body">
-								  <h2>Làm thế nào để thiết kế 1 web đẹp ?</h2>
-								  <p class="card-text">chiều nay không có mưa bay ướt trên đôi bờ vai, chiều nay không có mắt em cười như lúc xưa</p>
-								</div>
-							  </a>
-						</div>
-						<div class="card">
-							<a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-								<img src="template/web/images/img_7.jpg" alt="Image placeholder">
-								<div class="blog-content-body">
-								  <h2>Làm thế nào để thiết kế 1 web đẹp ?</h2>
-								  <p class="card-text">chiều nay không có mưa bay ướt trên đôi bờ vai, chiều nay không có mắt em cười như lúc xưa</p>
-								</div>
-							  </a>
-						</div>
-						<div class="card">
-						<a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-							<div class="blog-content-body">
-								<img class="card-img-top" src="template/web/images/img_3.jpg" alt="Card image cap">
-								<div class="card-body">
-								  <h5 class="card-title">Card title</h5>
-								  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-								</div>
-								<div class="card-footer">
-								  <small class="text-muted">Last updated 3 mins ago</small>
-								</div>
+					<div class="card-columns">								
+						<!-- blog list -->
+						 <c:forEach var="item" items="${model.listResult}">
+							<div class="card">
+								<a href='<c:url value="/detail?id=${item.id}"/>' class="blog-entry element-animate" data-animate-effect="fadeIn">
+									<img src="template/web/images/img_7.jpg" alt="Image placeholder">
+									<div class="blog-content-body">
+									  <div class="post-meta">
+										<span class="author mr-2"><img src="template/web/images/person_2.jpg" alt="Colorlib"> Colorlib</span>&bullet;
+										<span class="mr-2">March 15, 2018 </span> &bullet;
+										<span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+									  </div>
+									  <h2>${item.name}</h2>
+									  <p>${item.shortDescription}</p>
+									</div>
+								  </a>
 							</div>
-						</a>
-						</div>
-						<div class="card">
-							<a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-								<img src="template/web/images/img_7.jpg" alt="Image placeholder">
-								<div class="blog-content-body">
-								  <h2>Làm thế nào để thiết kế 1 web đẹp ?</h2>
-								  <p class="card-text">chiều nay không có mưa bay ướt trên đôi bờ vai, chiều nay không có mắt em cười như lúc xưa</p>
-								</div>
-							  </a>
-						</div>
-						<div class="card">
-							<a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-								<img src="template/web/images/person_1.jpg" alt="Image placeholder" height="235px"  width="350px">
-								<div class="blog-content-body">
-								 
-								 <h2>CTDL: Cây nhị phân và các thao tác cơ bản như thêm sửa xóa tìm kiếm</h2>
-								 <p>
-									chiều nay không có mưa bay ướt trên đôi bờ vai, chiều nay không có mắt em cười như lúc xưa4
-									chiều nay không có mưa bay ướt trên đôi bờ vai, chiều nay không có mắt em cười như lúc xưa
-								 </p>
-								</div>
-							  </a>
-						</div>
-						<div class="card">
-							<a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-								<img src="template/web/images/img_7.jpg" alt="Image placeholder">
-								<div class="blog-content-body">
-								  <div class="post-meta">
-									<span class="author mr-2"><img src="template/web/images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-									<span class="mr-2">March 15, 2018 </span> &bullet;
-									<span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-								  </div>
-								  <h2>How to Find the Video Games of Your Yoo Games of Your Youo Games of Your Youuth</h2>
-								</div>
-							  </a>
-						</div>
-						<div class="card">
-							<a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-								<img src="template/web/images/person_1.jpg" alt="Image placeholder" height="235px"  width="350px">
-								<div class="blog-content-body">
-								  <div class="post-meta">
-									<span class="author mr-2"><img src="template/web/images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-									<span class="mr-2">March 15, 2018 </span> &bullet;
-									<span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-								  </div>
-								 <h2>CTDL: Cây nhị phân và các thao tác cơ bản như thêm sửa xóa tìm kiếm</h2>
-								</div>
-							  </a>
-						</div><div class="card">
-							<a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-								<img src="template/web/images/img_7.jpg" alt="Image placeholder">
-								<div class="blog-content-body">
-								  <div class="post-meta">
-									<span class="author mr-2"><img src="template/web/images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-									<span class="mr-2">March 15, 2018 </span> &bullet;
-									<span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-								  </div>
-								  <h2>How to Find the Video Games of Your Yoo Games of Your Youo Games of Your Youuth</h2>
-								</div>
-							  </a>
-						</div>
-						<div class="card">
-							<a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-								<img src="template/web/images/person_1.jpg" alt="Image placeholder" height="235px"  width="350px">
-								<div class="blog-content-body">
-								  <div class="post-meta">
-									<span class="author mr-2"><img src="template/web/images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-									<span class="mr-2">March 15, 2018 </span> &bullet;
-									<span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-								  </div>
-								 <h2>CTDL: Cây nhị phân và các thao tác cơ bản như thêm sửa xóa tìm kiếm</h2>
-								</div>
-							  </a>
-						</div>
+						</c:forEach>
 						
-						<div class="card ">
-							<a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-								<img src="template/web/images/img_7.jpg" alt="Image placeholder">
-								<div class="blog-content-body">
-								  <div class="post-meta">
-									<span class="author mr-2"><img src="template/web/images/person_2.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-									<span class="mr-2">March 15, 2018 </span> &bullet;
-									<span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-								  </div>
-								  <h2>How to Find thew to Find w to Find w to Find  Vir Youth</h2>
-								</div>
-							  </a>
-						</div>
 						
-						<div class="card">
-							<a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-								<img src="template/web/images/person_1.jpg" alt="Image placeholder" height="235px"  width="350px">
-								<div class="blog-content-body">
-								  <div class="post-meta">
-									<span class="author mr-2"><img src="template/web/images/person_3.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-									<span class="mr-2">March 15, 2018 </span> &bullet;
-									<span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-								  </div>
-								 <h2>CTDL: Cây nhị thêm sửa xóa tìm kiếm</h2>
-								</div>
-							  </a>
-						</div>
-						
-						<div class="card">
-							<a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-								<img src="template/web/images/img_7.jpg" alt="Image placeholder">
-								<div class="blog-content-body">
-								  <div class="post-meta">
-									<span class="author mr-2"><img src="template/web/images/person_2.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-									<span class="mr-2">March 15, 2018 </span> &bullet;
-									<span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-								  </div>
-								  <h2>How to Find the Video Games of Your Youth</h2>
-								</div>
-							  </a>
-						</div>
 					</div>
 				</div>
      

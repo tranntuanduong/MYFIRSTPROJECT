@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,10 +62,9 @@
                   <a class="nav-link dropdown-toggle" href="category.html" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Thể Loại </a>
                   <div class="dropdown-menu" aria-labelledby="dropdown05">
                     <a class="dropdown-item" href="category">Cuộc sống</a>
-                    <a class="dropdown-item" href="category">Ẩm thực</a>
-                    <a class="dropdown-item" href="category">Adventure</a>
-                    <a class="dropdown-item" href="category">Du lịch</a>
-                    <a class="dropdown-item" href="category">Business</a>
+                    <c:forEach var="item" items="${categorys}">
+                  		<a class="dropdown-item" href="#">${item.name}</a>
+                	</c:forEach>
                   </div>
 
                 </li>

@@ -53,6 +53,16 @@
                 </li>
                 
             </ul>
+            <ul class="submenu">
+                <li class="">
+                    <a href='<c:url value="/admin/blog/tagAndCategory"/>'>
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Thêm tag và thể loại
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                
+            </ul>
         </li>
     </ul>
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

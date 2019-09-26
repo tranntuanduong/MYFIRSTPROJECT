@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -26,22 +27,23 @@ public class BlogEntity extends BaseEntity{
 	@Column (name = "content")
 	private String content;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "blog_category",
 	    joinColumns = @JoinColumn(name = "blogid"),
 	    inverseJoinColumns = @JoinColumn(name = "categoryid")
 	)	
 	private List<CategoryEntity> categorys = new ArrayList<>();
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "blog_tag",
 	    joinColumns = @JoinColumn(name = "blogid"),
 	    inverseJoinColumns = @JoinColumn(name = "tagid")
 	)	
 	private List<TagEntity> tags = new ArrayList<>();
+   
 	
 	@ManyToOne
-	@JoinColumn(name = "blogs")
+	@JoinColumn(name = "authorid")
 	private UserEntity author;
 
 	public String getName() {

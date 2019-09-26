@@ -1,8 +1,9 @@
 package com.junblog.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
+import com.junblog.dto.UserDTO;
+
 public interface IUserService {
-
+	List<UserDTO> findAll();
 }

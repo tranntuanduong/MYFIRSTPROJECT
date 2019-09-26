@@ -65,4 +65,5 @@ public class JPAConfig {
 		properties.setProperty("hibernate.format_sql", "true");
 		return properties;
 	}
+	
 }

@@ -42,35 +42,47 @@
 												<div class="col-sm-12">
 													<label><b>Tên bài viết</b></label>
 													<div class="fg-line">
-														<input type="text" class="form-control input-sm"
-															name="name" />
+														<input type="text" class="form-control input-sm" name="name" value="${model.name}"/>
 													</div>
 												</div>
 												
 											</div>
 																				
 											<div class="form-group">
-												<div class="col-sm-3">
-													<label><b>Thể loại</b></label>
-													<div class="fg-line">
-														<input type="number" class="form-control input-sm"
-															name="category" />
+												<div class="col-sm-4">
+													<div class="col-sm-6">
+														<label><b>Chọn thể loại</b></label>
+														<select class="form-control" id="sel1" name="categoryId">
+															<option value=""  selected>-- Chọn thể loại --</option>
+															<c:forEach var="item" items="${categorys}">
+																<option value="${item.id}" ${(item.id==model.categoryId)?'selected':''} >${item.name}</option>
+															</c:forEach>
+														</select>							
 													</div>
 												</div>
-												<div class="col-sm-3">
-													<label><b>Tác giả</b></label>
-													<div class="fg-line">
-														<input type="text" class="form-control input-sm"
-															name="tagegory" />
+
+												<div class="col-sm-4">
+													<div class="col-sm-5">
+														<label><b>Tác giả  </b></label>
+														<select class="form-control" id="sel1" name=authorId>
+															<option value=""  selected>--Chọn tác giả--</option>
+															<c:forEach var="item" items="${authors}">
+																<option value="${item.id}" ${(item.id==model.authorId)?'selected':''} >${item.fullName}</option>
+															</c:forEach>
+														</select>							
 													</div>
 												</div>
-												<div class="col-sm-3">
-													<label><b>Tag</b></label>
-													<div class="fg-line">
-														<input type="number" class="form-control input-sm"
-															name="tag"  />
+												<div class="col-sm-4">
+													<div class="col-sm-5">
+														<label><b>Tag</b></label>
+														<select class="form-control" id="sel1" name="tagId">
+															<option value=""  selected>--Chọn tag--</option>
+															<c:forEach var="item" items="${tags}">
+																<option value="${item.id}" ${(item.id==model.tagId)?'selected':''} >${item.name}</option>
+															</c:forEach>
+														</select>							
 													</div>
-												</div>			
+												</div>	
 											</div>
 											
 											<div class="form-group">
@@ -82,14 +94,16 @@
 									</div>
 								</div>
 							</div>
-							<input type="hidden" value="1" id="page" name="page"/>
+						<input type="hidden" value="1" id="page" name="page"/>
 						<input type="hidden" value="3" id="maxPageItem" name="maxPageItem"/>
 						<input type="hidden" value="ASC" id="sortBy" name="sortBy"/>
 						<input type="hidden" value="name" id="sortName" name="sortName"/>
 						</form:form>
 						<!-- end form -->
 						
-							<!-- button add, delete -->
+				
+						
+						<!-- button add, delete -->
 						<div class="table-btn-controls">
 							<div class="pull-right tableTools-container">
 								<div class="dt-buttons btn-overlap btn-group">
@@ -111,7 +125,47 @@
 					</div>
 				</div>
 				<!-- table -->
-		
+				<div class="row">
+					<div class="col-xs-12">
+					 	<table class="table table-bordered">
+					 		<thead>
+						      <tr>
+						      	<th><input type="checkbox" value="#"></th>
+						        <th>Tên bài viết</th>
+						        <th>Thể loại</th>
+						        <th>Tác giả</th>
+						        <th>Tag</th>  		
+						        <th>Thao tác</th>	       
+						      </tr>
+						    </thead>
+						    <tbody>
+						    	<c:forEach var="item" items="${model.listResult}">
+						    		<tr>
+						    			<td><input type="checkbox" value="${item.id}" id="checkbox_${item.id}"></td>
+						    			<td>${item.name}</td>
+								        <td>${item.categoryName}</td>
+								        <td>${item.authorId}</td>
+								        <td>${item.tagName}</td>
+								        <td>
+									        <table>
+								    			<tr>
+													<td>
+														<a class="btn btn-xs btn-primary btn-edit"
+															data-toggle="tooltip"
+															title='Cập nhật bài viết'
+															href='<c:url value="${item.id}"/>'> 
+															<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+														</a>
+													</td>
+												</tr>
+								    		</table>
+								        </td>
+						    		</tr>
+						    	</c:forEach>
+						    </tbody>
+					 	</table>
+					 </div>
+				</div>
 				
 				<!-- paging -->
 				<div class="container">

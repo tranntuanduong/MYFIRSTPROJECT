@@ -20,8 +20,8 @@ public class RoleEntity extends BaseEntity{
 	
 	@ManyToMany
 	@JoinTable(name = "user_role",
-		joinColumns = @JoinColumn(name = "user_id"),
-		inverseJoinColumns = @JoinColumn(name = "role_id")
+		joinColumns = @JoinColumn(name = "roleid"),
+		inverseJoinColumns = @JoinColumn(name = "userid")
 	)
 	private List<UserEntity> users = new ArrayList<>();
 	
