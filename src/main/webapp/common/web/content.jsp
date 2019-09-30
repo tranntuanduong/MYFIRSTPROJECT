@@ -1,12 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
 	 	<div class="col-md-12 col-lg-8 main-content">
               <div class="row">
@@ -142,5 +133,3 @@
               </div>
 
             </div>
-</body>
-</html>

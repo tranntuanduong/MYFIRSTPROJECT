@@ -15,7 +15,7 @@ public class CategoryEntity extends BaseEntity {
 	@Column (name = "name")
 	private String name;
 	
-	@ManyToMany(mappedBy = "categorys", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "categorys",fetch = FetchType.EAGER)
     private List<BlogEntity> blogs = new ArrayList<>();
 
 	public String getName() {

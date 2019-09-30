@@ -15,7 +15,7 @@ public class TagEntity extends BaseEntity{
 	@Column (name = "name")
 	private String name;
 	
-	@ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "tags",fetch = FetchType.EAGER)
     private List<BlogEntity> blogs = new ArrayList<>();
 
 	public String getName() {

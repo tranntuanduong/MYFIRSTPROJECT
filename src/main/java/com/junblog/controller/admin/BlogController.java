@@ -44,6 +44,8 @@ public class BlogController {
 		ModelAndView mav = new ModelAndView();
 		if(model.getId() != null) {
 			//findById
+			BlogDTO blogDetail = blogService.findById(model.getId());
+			mav.addObject("blogDetail", blogService.findById(model.getId()));
 		}
 		mav.addObject("tags", tagService.findAll());
 		mav.addObject("categorys", categoryService.findAll());

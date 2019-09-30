@@ -59,6 +59,7 @@
     <script src="template/web/js/jquery.waypoints.min.js"></script>
     <script src="template/web/js/jquery.stellar.min.js"></script>
     <script src="template/web/js/main.js"></script>
+    <script src="<c:url value='/template/admin/assets/js/paging/jquery.twbsPagination.js'/>"></script>
     
 </body>
 </html>

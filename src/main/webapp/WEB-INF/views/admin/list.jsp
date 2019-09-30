@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
-<c:url var = "buildingURL" value = "/admin/building"/>
-<c:url var="builddingAPI" value="/api-admin-building"/>
+<c:url var = "blogURL" value = "/admin/blog"/>
+<c:url var="blogAPI" value="/api/blog"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -153,7 +153,7 @@
 														<a class="btn btn-xs btn-primary btn-edit"
 															data-toggle="tooltip"
 															title='Cập nhật bài viết'
-															href='<c:url value="${item.id}"/>'> 
+															href='<c:url value="/admin/blog/edit?id=${item.id}"/>'> 
 															<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 														</a>
 													</td>
@@ -190,20 +190,20 @@
 		var dataArray = $(' tbody input[type=checkbox]:checked').map(function () {
 			return $(this).val();			
 		}).get();
-		deleteBuilding(dataArray);	
+		deleteBLog(dataArray);	
 	})
 	
-	function deleteBuilding(data) {
+	function deleteBLog(data) {
 		$.ajax({
-			url : 'http://localhost:8087/api/building',
+			url: '${blogAPI}',
 			data: JSON.stringify(data),
 			type: 'DELETE',	
 			contentType: 'application/json',
 			success: function(data) {
-				window.location.href = "${buildingURL}?action=LIST&page=1&maxPageItem=3&sortName=name&sortBy=ASC&message=delete_success";
+				window.location.href = "${blogURL}?action=LIST&page=1&maxPageItem=3&sortName=name&sortBy=ASC&message=delete_success";
 			},		
 			error: function() {
-				window.location.href = "${buildingURL}?action=LIST&page=1&maxPageItem=3&sortName=name&sortBy=ASC&message=errorsystem";
+				window.location.href = "${blogURL}?action=LIST&page=1&maxPageItem=3&sortName=name&sortBy=ASC&message=errorsystem";
 			}
 		});
 	}
@@ -225,8 +225,6 @@
 	            }
 	        })
 	    });
-	 
-	 
 </script>
 
 

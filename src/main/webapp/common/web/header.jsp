@@ -1,13 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/common/taglib.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 	<header role="banner">
         <div class="top-bar">
           <div class="container">
@@ -20,9 +12,9 @@
               </div>
               <div class="col-4 search-top">
                 <!-- <a href="#"><span class="fa fa-search"></span></a> -->
-                <form action="#" class="search-top-form">
+                <form action="${searchURL}" class="search-top-form">
                   <span class="icon fa fa-search"></span>
-                  <input type="text" id="s" placeholder="Type keyword to search...">
+                  <input type="text" id="s" name="name"  placeholder="Search: ${model.name}">
                 </form>
               </div>
             </div>
@@ -44,7 +36,7 @@
             <div class="collapse navbar-collapse" id="navbarMenu">
               <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                  <a class="nav-link active" href="index.html">Trang chủ </a>
+                  <a class="nav-link active" href="web-home">Trang chủ </a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="category.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">JunCode </a>
@@ -63,7 +55,7 @@
                   <div class="dropdown-menu" aria-labelledby="dropdown05">
                     <a class="dropdown-item" href="category">Cuộc sống</a>
                     <c:forEach var="item" items="${categorys}">
-                  		<a class="dropdown-item" href="#">${item.name}</a>
+                  		<a href='<c:url value="/category?categoryName=${item.name}&categoryId=${item.id}"/>' class="dropdown-item" href="#">${item.name}</a>
                 	</c:forEach>
                   </div>
 
@@ -80,5 +72,3 @@
           </div>
         </nav>
       </header>
-</body>
-</html>

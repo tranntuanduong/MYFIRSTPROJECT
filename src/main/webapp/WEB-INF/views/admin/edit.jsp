@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
-<c:url var="blogURL" value="/api/blog"/>
+<c:url var="blogAPI" value="/api/blog"/>
+<c:url var="editURL" value="/admin/blog/edit"/>
+<c:url var="adminBlogURL" value="/admin/blog"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Edit - Blog</title>
 </head>
 <body>
 	<div class="main-content">
@@ -29,7 +31,7 @@
 								</div>
 								<div class="col-sm-6">
 									<div class="fg-line">
-										<input type="text" class="form-control input-sm" name="name" value="${model.name}"/>
+										<input type="text" class="form-control input-sm" name="name" value="${blogDetail.name}"/>
 									</div>
 								</div>
 							</div>			
@@ -46,8 +48,21 @@
 											        <button class="btn btn-primary" type="button" data-toggle="dropdown">Thể loại<span ></span> <span class="caret"></span></button>
 													<ul class="dropdown-menu">
 														<c:forEach var="item" items="${categorys}">
-															<li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox" name="cagegoryId" value="${item.id}"/>&nbsp;${item.name}</a></li>
-														</c:forEach>
+															<%boolean checked = false; %>															
+															<c:forEach var="category" items="${blogDetail.categorys}">
+																<c:if test="${item.id == category.id}">
+																	<li><a class="small"><input type="checkbox" name="categoryId" value="${item.id}" checked/>&nbsp;${item.name}</a></li>
+																	<%checked = true; %>
+																</c:if>										
+															</c:forEach>	
+																<%
+																  if(!checked) {
+																 %>	  
+																 	<li><a class="small"><input type="checkbox" name="categoryId" value="${item.id}" />&nbsp;${item.name}</a></li>
+																 <%
+																  }
+																 %> 				 
+														</c:forEach>				
 													</ul>
 											 	 </div>
 												</div>
@@ -67,9 +82,23 @@
 											     <div class="button-group">
 											        <button class="btn btn-primary" type="button" data-toggle="dropdown">Tags<span ></span> <span class="caret"></span></button>
 													<ul class="dropdown-menu">
+													
 														<c:forEach var="item" items="${tags}">
-															<li><a class="small"><input type="checkbox" name="tagId" value="${item.id}"/>&nbsp;${item.name}</a></li>
-														</c:forEach>
+															<%boolean checked = false; %>															
+															<c:forEach var="tag" items="${blogDetail.tags}">
+																<c:if test="${item.id == tag.id}">
+																	<li><a class="small"><input type="checkbox" name="tagId" value="${item.id}" checked/>&nbsp;${item.name}</a></li>
+																	<%checked = true; %>
+																</c:if>										
+															</c:forEach>	
+																<%
+																  if(!checked) {
+																 %>	  
+																 	<li><a class="small"><input type="checkbox" name="tagId" value="${item.id}" />&nbsp;${item.name}</a></li>
+																 <%
+																  }
+																 %> 				 
+														</c:forEach>														
 													</ul>
 											 	 </div>
 												</div>
@@ -83,7 +112,7 @@
 								</div>
 								<div class="col-sm-6">
 									<div class="fg-line">
-										<input type="text" class="form-control input-sm" name="shortDescription" value="${model.shortDescription}"/>
+										<input type="text" class="form-control input-sm" name="shortDescription" value="${blogDetail.shortDescription}"/>
 									</div>
 								</div>
 							</div>
@@ -108,7 +137,7 @@
 								</div>
 								<div class="col-sm-9">
 									<div class="fg-line">										
-										<textarea rows="4" cols="50" name="content" id="content">${model.content}</textarea>
+										<textarea name="content" id="content">${blogDetail.content}</textarea>
 									</div>
 								</div>
 							</div>
@@ -129,6 +158,7 @@
 									</div>
 								</c:if>
 							</div>		
+							<br><br><br><br><br><br><br><br><br><br><br><br>
 					</div>
 				</div>
 			</div>
@@ -154,7 +184,7 @@
 		var categoryIds = [];
 		var tagIds = [];
 		$.each(formData, function (index, v ) {
-			if (v.name != 'cagegoryId' && v.name != 'tagId') {
+			if (v.name != 'categoryId' && v.name != 'tagId') {
 				data[""+v.name+""] = v.value;
 			} else if(v.name != 'tagId') {
 				categoryIds.push(v.value);
@@ -174,31 +204,31 @@
 	
 	function addBlog(data,id) {
 		$.ajax({
-			url: '${blogURL}',
+			url: '${blogAPI}',
 			data: JSON.stringify(data),
 			type: 'POST',	
 			contentType: 'application/json',
 			dataType: 'json',
 	
 			success: function(data) {
-				//window.location.href = "${buildingURL}?action=EDIT&id="+data.id+"&message=insert_success";
+				window.location.href = "${editURL}?action=EDIT&id="+data.id+"&message=insert_success";
 			},		
 			error: function() {
-				//window.location.href = "${buildingURL}?action=LIST&message=insert_success";
+				window.location.href = "${adminBlogURL}?action=LIST&page=1&maxPageItem=3&sortName=name&sortBy=ASC&message=insert_success";
 			}
 		});
 	}
 	function editBlog(data, id) {
 		$.ajax({
-			url: '${blogURL}',
+			url: '${blogAPI}',
 			data: JSON.stringify(data),
 			type: 'PUT',	
 			contentType: 'application/json',	
 			success: function(data) {
-				//window.location.href = "${buildingURL}?action=EDIT&id="+id+"&message=update_success";
+				window.location.href = "${editURL}?action=EDIT&id="+id+"&message=update_success";
 			},		
 			error: function() {
-				//window.location.href = "${buildingURL}?action=LIST&message=errorsystem";
+				window.location.href = "${editURL}?action=EDIT&id="+data.id+"&message=errorsystem";
 			}
 		});
 	}	

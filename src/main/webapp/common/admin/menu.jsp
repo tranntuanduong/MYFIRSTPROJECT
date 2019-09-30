@@ -47,7 +47,7 @@
                 <li class="">
                     <a href='<c:url value="/admin/blog?action=LIST&page=1&maxPageItem=3&sortName=name&sortBy=ASC"/>'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Thêm bài viết
+                        Quản lí bài viết
                     </a>
                     <b class="arrow"></b>
                 </li>

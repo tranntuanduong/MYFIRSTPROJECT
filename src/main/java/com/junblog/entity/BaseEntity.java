@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @MappedSuperclass
@@ -21,12 +23,14 @@ public class BaseEntity {
 	private Long id;
 	
 	@Column(name = "createddate")
+	@CreatedDate
 	private Date createdDate; 
 	
 	@Column(name = "modifieddate")
 	private Date modifiedDate;
 	
 	@Column(name = "createdby")	
+	@CreatedBy
 	private String createdBy; 
 	
 	@Column(name = "modifiedby")

@@ -1,20 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/common/taglib.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>	
 			<!-- sidebar -->
 			<div class="col-md-12 col-lg-4  sidebar">
               <div class="sidebar-box search-form-wrap">
-                <form action="#" class="search-form">
+                <form action="${searchURL}" class="search-form">
                   <div class="form-group">
                     <span class="icon fa fa-search"></span>
-                    <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+                    <input type="text" class="form-control" id="s" name="name" placeholder="Tìm kiếm: ${model.name}">
+                    
                   </div>
                 </form>
               </div>
@@ -83,7 +76,7 @@
                 <ul class="categories">                
                   <c:forEach var="item" items="${categorys}">
                   	<c:if test="${item.count != null}">
-                  		<li><a href='<c:url value="/web-home?categoryId=${item.id}"/>'>${item.name} <span>(${item.count})</span></a></li>
+                  		<li><a href='<c:url value="/category?categoryName=${item.name}&categoryId=${item.id}"/>'>${item.name} <span>(${item.count})</span></a></li>
                   	</c:if>
                   </c:forEach>
                 </ul>
@@ -103,5 +96,3 @@
 		<!-- end sidebar -->
 			
           
-</body>
-</html>

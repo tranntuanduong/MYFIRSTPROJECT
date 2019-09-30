@@ -33,6 +33,9 @@ public class HomeController {
 		BlogSearchBuilder builder = initBlogSearchBuilder(model);
 		Pageable pageable = new PageRequest(model.getPage() - 1, model.getMaxPageItem());
 		BlogOutPut blogOutPut = blogService.findAll(builder, pageable);
+		model.setTotalItems(blogOutPut.getCount());
+		model.setTotalPage((int)Math.ceil((double)model.getTotalItems() / model.getMaxPageItem()));
+
 		model.setListResult(blogOutPut.getBlogDTOs());
 		return mav;
 	}

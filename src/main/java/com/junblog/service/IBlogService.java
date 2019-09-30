@@ -8,6 +8,7 @@ import com.junblog.output.BlogOutPut;
 
 public interface IBlogService {
 	BlogDTO save(BlogDTO newBlog);
+	void delete(Long[] ids);
 	BlogDTO findById(Long id);
 	BlogOutPut findAll(BlogSearchBuilder builder, Pageable pageable);
 	

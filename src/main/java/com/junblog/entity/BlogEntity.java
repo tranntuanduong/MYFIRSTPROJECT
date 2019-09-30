@@ -3,9 +3,9 @@ package com.junblog.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -27,14 +27,14 @@ public class BlogEntity extends BaseEntity{
 	@Column (name = "content")
 	private String content;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "blog_category",
 	    joinColumns = @JoinColumn(name = "blogid"),
 	    inverseJoinColumns = @JoinColumn(name = "categoryid")
 	)	
 	private List<CategoryEntity> categorys = new ArrayList<>();
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "blog_tag",
 	    joinColumns = @JoinColumn(name = "blogid"),
 	    inverseJoinColumns = @JoinColumn(name = "tagid")

@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.junblog.builder.BlogSearchBuilder;
 import com.junblog.converter.BlogConverter;
@@ -19,6 +20,7 @@ import com.junblog.repository.BlogRepository;
 import com.junblog.repository.CategoryRepository;
 import com.junblog.repository.TagRepository;
 import com.junblog.service.IBlogService;
+import com.junblog.utils.SecurityUtils;
 
 @Service
 public class BlogService implements IBlogService{
@@ -35,30 +37,43 @@ public class BlogService implements IBlogService{
 	}
 
 	@Override
-	public BlogDTO save(BlogDTO newBlog) {
-		BlogEntity blogEntity = blogConverter.convertToEntity(newBlog);
-		//tam thoi chua co phan quyen
-		blogEntity.setCreatedBy("duongdeptrai");
-		blogEntity.setCreatedDate(new Date());
+	@Transactional
+	public BlogDTO save(BlogDTO model) {
+		BlogEntity blogEntity = blogConverter.convertToEntity(model);
+		//author -> phan quyen da
 		//tags
 		List<TagEntity> tags = new ArrayList<>();
-		for(Long id : newBlog.getTagIds()) {
+		for(Long id : model.getTagIds()) {
 			TagEntity tagEntity = tagRepository.findOne(id);
 			tags.add(tagEntity);
 		}
-		blogEntity.setTags(tags);
 		//category
 		List<CategoryEntity> categorys = new ArrayList<>();
-		for(Long id : newBlog.getCategoryIds()) {
+		for(Long id : model.getCategoryIds()) {
 			CategoryEntity categoryEntity = categoryRepository.findOne(id);
 			categorys.add(categoryEntity);
 		}
-		blogEntity.setCategorys(categorys);	
-		//author -> phan quyen da
-		blogEntity = blogRepository.save(blogEntity);	
-		return blogConverter.convertToDTO(blogEntity);
+		
+		if(model.getId() == null) {
+			blogEntity.setTags(tags);
+			blogEntity.setCategorys(categorys);	
+			blogEntity = blogRepository.save(blogEntity);	
+			return blogConverter.convertToDTO(blogEntity);
+		} else {
+			BlogEntity oldBlogEntity = blogRepository.findOne(model.getId());
+			BlogEntity newBlog = blogConverter.convertToEntity(model);
+			newBlog.setCreatedBy(oldBlogEntity.getCreatedBy());
+			newBlog.setCreatedDate(oldBlogEntity.getCreatedDate());
+			//cho nay chua on
+			newBlog.setModifiedBy(SecurityUtils.getPrincipal().getUsername());
+			newBlog.setModifiedDate(new Date());
+			newBlog.setTags(tags);
+			newBlog.setCategorys(categorys);	
+			newBlog = blogRepository.save(newBlog);	
+			return blogConverter.convertToDTO(blogEntity);
+		}		
 	}
-
+	
 	@Override
 	public BlogOutPut findAll(BlogSearchBuilder builder, Pageable pageable) {
 	
@@ -104,6 +119,20 @@ public class BlogService implements IBlogService{
 		return tagName;
 	}
 
-
-	
+	@Override
+	@Transactional
+	public void delete(Long[] ids) {
+		for(Long id : ids) {
+			BlogEntity blogEntity = blogRepository.findOne(id);
+			//delete tag
+			for(TagEntity tag : blogEntity.getTags()) {
+				tag.getBlogs().remove(blogEntity);
+			}
+			//delete category
+			for(CategoryEntity category : blogEntity.getCategorys()) {
+				category.getBlogs().remove(blogEntity);
+			}
+			blogRepository.delete(blogEntity);
+		}
+	}	
 }

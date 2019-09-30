@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/decorators">
 
+	<excludes>
+        <pattern>/api*</pattern>     
+    </excludes>
+    
     <decorator name="admin" page="admin.jsp">
        <pattern>/admin*</pattern>
     </decorator>
     
+	
     <decorator name="web" page="home.jsp">
        <pattern>/*</pattern>
     </decorator>
@@ -14,6 +19,6 @@
     </decorator>
     
     <decorator name="login" page="login.jsp">
-        <pattern>/dang-nhap</pattern>
+        <pattern>/login</pattern>
     </decorator>
 </decorators>
