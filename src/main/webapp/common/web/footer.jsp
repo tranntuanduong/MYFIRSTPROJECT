@@ -3,12 +3,12 @@
         <div class="container">
           <div class="row mb-5">
             <div class="col-md-4">
-              <h3>About Us</h3>
+              <h3>About Me</h3>
               <p class="mb-4">
-                <img src="template/web/images/img_1.jpg" alt="Image placeholder" class="img-fluid">
+                <img src="${aboutMe.image}" alt="Image placeholder" class="img-fluid">
               </p>
 
-              <p>Lorem ipsum dolor sit amet sa ksal sk sa, consectetur adipisicing elit. Ipsa harum inventore reiciendis. <a href="#">Read More</a></p>
+              <p>${aboutMe.shortDescription} <a href='<c:url value="/detail?id=${aboutMe.id}"/>'>Read More</a></p>
             </div>
             <div class="col-md-6 ml-auto">
               <div class="row">
@@ -16,42 +16,20 @@
                   <h3>Latest Post</h3>
                   <div class="post-entry-sidebar">
                     <ul>
-                      <li>
-                        <a href="">
-                          <img src="template/web/images/img_6.jpg" alt="Image placeholder" class="mr-4">
-                          <div class="text">
-                            <h4>How to Find the Video Games of Your Youth</h4>
-                            <div class="post-meta">
-                              <span class="mr-2">March 15, 2018 </span> &bullet;
-                              <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="">
-                          <img src="template/web/images/img_3.jpg" alt="Image placeholder" class="mr-4">
-                          <div class="text">
-                            <h4>How to Find the Video Games of Your Youth</h4>
-                            <div class="post-meta">
-                              <span class="mr-2">March 15, 2018 </span> &bullet;
-                              <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="">
-                          <img src="template/web/images/img_4.jpg" alt="Image placeholder" class="mr-4">
-                          <div class="text">
-                            <h4>How to Find the Video Games of Your Youth</h4>
-                            <div class="post-meta">
-                              <span class="mr-2">March 15, 2018 </span> &bullet;
-                              <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
+	                    <c:forEach var="item" items="${sliders}">
+	                      <li>
+	                        <a href='<c:url value="/detail?id=${item.id}"/>'>
+	                          <img src="${item.image}" alt="Image placeholder" class="mr-4">
+	                          <div class="text">
+	                            <h4>${item.name}</h4>
+	                            <div class="post-meta">
+	                              <span class="mr-2">March 15, 2018 </span> &bullet;
+	                              <span class="ml-2">${item.views} Views</span>
+	                            </div>
+	                          </div>
+	                        </a>
+	                      </li>    
+                      	</c:forEach> 
                     </ul>
                   </div>
                 </div>

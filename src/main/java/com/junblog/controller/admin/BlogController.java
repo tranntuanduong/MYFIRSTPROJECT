@@ -69,6 +69,7 @@ public class BlogController {
 		BlogSearchBuilder builder = new BlogSearchBuilder.Builder()
 				.setName(model.getName()).setAuthorId(model.getAuthorId())
 				.setCategoryId(model.getCategoryId()).setTagId(model.getTagId())
+				.setSlider(model.getSlider())
 				.build();
 		return builder;
 	}

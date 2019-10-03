@@ -11,7 +11,7 @@ public class AbstracDTO<T> {
 	private String createdBy; 
 	private String modifiedBy;
 	private String action;
-	private int maxPageItem = 3;
+	private int maxPageItem = 6;
 	private int page = 1;
 	private List<T> listResult = new ArrayList<T>();
 	private Long[] ids;

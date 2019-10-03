@@ -29,6 +29,12 @@ public class CategoryController {
 		mav.addObject("categorys", categoryService.findAll());
 		//tag
 		mav.addObject("tags", tagService.findAll());
+		//slider
+		mav.addObject("sliders", blogService.sliders());
+		//post popular
+		mav.addObject("populars", blogService.postPopulars());
+		//about me
+		mav.addObject("aboutMe", blogService.aboutMe());
 		//blog
 		BlogSearchBuilder builder = initBlogSearchBuilder(model);
 		Pageable pageable = new PageRequest(model.getPage() - 1, model.getMaxPageItem());

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
 			<!-- sidebar -->
 			<div class="col-md-12 col-lg-4  sidebar">
               <div class="sidebar-box search-form-wrap">
@@ -30,42 +31,23 @@
               </div>
               <!-- END sidebar-box -->  
               <div class="sidebar-box">
-                <h3 class="heading">Popular Posts</h3>
+                <h3 class="heading">Nhiều lượt xem nhất</h3>
                 <div class="post-entry-sidebar">
                   <ul>
-                    <li>
-                      <a href="">
-                        <img src="template/web/images/img_2.jpg" alt="Image placeholder" class="mr-4">
-                        <div class="text">
-                          <h4>How to Find the Video Games of Your Youth</h4>
-                          <div class="post-meta">
-                            <span class="mr-2">March 15, 2018 </span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src="template/web/images/img_4.jpg" alt="Image placeholder" class="mr-4">
-                        <div class="text">
-                          <h4>How to Find the Video Games of Your Youth</h4>
-                          <div class="post-meta">
-                            <span class="mr-2">March 15, 2018 </span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src="template/web/images/img_12.jpg" alt="Image placeholder" class="mr-4">
-                        <div class="text">
-                          <h4>How to Find the Video Games of Your Youth</h4>
-                          <div class="post-meta">
-                            <span class="mr-2">March 15, 2018 </span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
+                  	<c:forEach var="item" items="${populars}">
+	                    <li>
+	                      <a href='<c:url value="/detail?id=${item.id}"/>'>
+	                        <img src="${item.image}" alt="Image placeholder" class="mr-4">
+	                        <div class="text">
+	                          <h4>${item.name}</h4>
+	                          <div class="post-meta">
+	                            <span class="mr-2">March 15, 2018 </span><br>	                            
+	                            <span class="ml-2">${item.views} lượt xem</span>
+	                          </div>
+	                        </div>
+	                      </a>
+	                    </li>    
+                   </c:forEach>                
                   </ul>
                 </div>
               </div>

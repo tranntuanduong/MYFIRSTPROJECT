@@ -19,6 +19,8 @@ public class BlogDTO extends AbstracDTO<BlogDTO> {
 	private String categoryName;
 	private String authorName;
 	private String tagName;
+	private Long views;
+	private String slider;
 	
 	private List<CategoryDTO> categorys;
 	private List<TagDTO> tags;
@@ -119,6 +121,18 @@ public class BlogDTO extends AbstracDTO<BlogDTO> {
 	}
 	public void setTags(List<TagDTO> tags) {
 		this.tags = tags;
+	}
+	public Long getViews() {
+		return views;
+	}
+	public void setViews(Long views) {
+		this.views = views;
+	}
+	public String getSlider() {
+		return slider;
+	}
+	public void setSlider(String slider) {
+		this.slider = slider;
 	}
 
 		

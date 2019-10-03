@@ -60,12 +60,12 @@
 						 <c:forEach var="item" items="${model.listResult}">
 							<div class="card">
 								<a href='<c:url value="/detail?id=${item.id}"/>' class="blog-entry element-animate" data-animate-effect="fadeIn">
-									<img src="template/web/images/img_7.jpg" alt="Image placeholder">
+									<img src="${item.image}" alt="Image placeholder">
 									<div class="blog-content-body">
 									  <div class="post-meta">
 										<span class="author mr-2"><img src="template/web/images/person_2.jpg" alt="Colorlib"> &bullet; ${item.createdBy}</span>&bullet;
 										<span class="mr-2">March 15, 2018 </span> &bullet;
-										<span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+										<span class="ml-2">${item.views} lượt xem</span>
 									  </div>
 									  <h2>${item.name}</h2>
 									  <p>${item.shortDescription}</p>
@@ -73,6 +73,7 @@
 								  </a>
 							</div>
 						</c:forEach>
+						
 						
 						
 					</div>
@@ -127,7 +128,7 @@
 	            	console.log("currentPage:"+currentPage);
 	                if(currentPage != page){	                	
 	                	$('#page').val(page);
-	                	$('#maxPageItem').val(3);
+	                	$('#maxPageItem').val(6);
 	                	$('#sortName').val('name');
 	                	$('#sortBy').val('ASC');
 	               	 	$('#formSubmit').submit();	   

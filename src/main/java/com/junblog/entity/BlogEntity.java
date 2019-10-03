@@ -27,6 +27,12 @@ public class BlogEntity extends BaseEntity{
 	@Column (name = "content")
 	private String content;
 	
+	@Column (name = "views")
+	private Long views;
+	
+	@Column (name = "slider")
+	private Integer slider;
+	
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "blog_category",
 	    joinColumns = @JoinColumn(name = "blogid"),
@@ -92,6 +98,22 @@ public class BlogEntity extends BaseEntity{
 
 	public void setTags(List<TagEntity> tags) {
 		this.tags = tags;
+	}
+
+	public Long getViews() {
+		return views;
+	}
+
+	public void setViews(Long views) {
+		this.views = views;
+	}
+
+	public Integer getSlider() {
+		return slider;
+	}
+
+	public void setSlider(Integer slider) {
+		this.slider = slider;
 	}
 	
 	

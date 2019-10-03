@@ -29,6 +29,13 @@ public class HomeController {
 		mav.addObject("categorys", categoryService.findAll());
 		//tag
 		mav.addObject("tags", tagService.findAll());
+		//post popular
+		mav.addObject("populars", blogService.postPopulars());
+		//slider
+		mav.addObject("sliders", blogService.sliders());
+		//about me
+		mav.addObject("aboutMe", blogService.aboutMe());
+		
 		//blog
 		BlogSearchBuilder builder = initBlogSearchBuilder(model);
 		Pageable pageable = new PageRequest(model.getPage() - 1, model.getMaxPageItem());

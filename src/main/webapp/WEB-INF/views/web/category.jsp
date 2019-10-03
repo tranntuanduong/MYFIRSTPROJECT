@@ -22,7 +22,7 @@
               	<c:forEach var="item" items="${model.listResult}">
               		<div class="post-entry-horzontal">
 	                  <a href='<c:url value="/detail?id=${item.id}"/>'>
-	                    <div class="image element-animate fadeIn element-animated" data-animate-effect="fadeIn" style="background-image: url(template/web/images/img_10.jpg);"></div>
+	                    <div class="image element-animate fadeIn element-animated" data-animate-effect="fadeIn" style="background-image: url(${item.image});"></div>
 	                    <span class="text">
 	                      <div class="post-meta">
 	                        <span class="author mr-2"><img src="template/web/images/person_1.jpg" alt="Colorlib"> Người dùng</span>•

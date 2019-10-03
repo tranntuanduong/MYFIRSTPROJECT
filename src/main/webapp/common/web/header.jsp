@@ -59,10 +59,7 @@
                 	</c:forEach>
                   </div>
 
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="web-about">Về tôi</a>
-                </li>
+                </li>            
                 <li class="nav-item">
                   <a class="nav-link" href="#">Liên hệ</a>
                 </li>

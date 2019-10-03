@@ -37,6 +37,16 @@
 							</div>			
 							<div class="form-group">
 								<div class="col-sm-3">
+									<label><b>Link ảnh</b></label>
+								</div>
+								<div class="col-sm-6">
+									<div class="fg-line">
+										<input type="text" class="form-control input-sm" name="image" value="${blogDetail.image}"/>
+									</div>
+								</div>
+							</div>	
+							<div class="form-group">
+								<div class="col-sm-3">
 									<label><b>Thể loại</b></label>
 								</div>
 								<div class="col-sm-3">
@@ -70,6 +80,7 @@
 										</div>
 								</div>
 							</div>
+							
 							<div class="form-group">
 								<div class="col-sm-3">
 									<label><b>Tags</b></label>
@@ -104,6 +115,16 @@
 												</div>
 										  </div>
 										</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-3">
+									<label><b>Hiển thị lên slider</b></label>
+								</div>
+								<div class="col-sm-6">
+									<div class="fg-line">
+										<input type="checkbox" value="${1}" name="slider" ${blogDetail.slider == 1 ? 'checked' :''}>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">

@@ -72,6 +72,7 @@
 														</select>							
 													</div>
 												</div>
+												
 												<div class="col-sm-4">
 													<div class="col-sm-5">
 														<label><b>Tag</b></label>
@@ -83,6 +84,12 @@
 														</select>							
 													</div>
 												</div>	
+												<div class="col-sm-4">
+													<div class="col-sm-5">
+														<label><b>Slider</b></label>
+														<input type="checkbox" value="${1}" name="slider" ${model.slider==1?'checked':''}>					
+													</div>
+												</div>
 											</div>
 											
 											<div class="form-group">

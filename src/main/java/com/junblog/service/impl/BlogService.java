@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.junblog.builder.BlogSearchBuilder;
+import com.junblog.constant.SystemConstant;
 import com.junblog.converter.BlogConverter;
 import com.junblog.dto.BlogDTO;
 import com.junblog.entity.BlogEntity;
@@ -31,8 +32,11 @@ public class BlogService implements IBlogService{
 	@Autowired private CategoryRepository categoryRepository;
 	
 	@Override
+	@Transactional
 	public BlogDTO findById(Long id) {
 		BlogEntity blogEntity = blogRepository.findOne(id);
+		blogRepository.updateViews(blogEntity.getViews() + 1, id);
+		blogEntity.setViews(blogEntity.getViews() + 1);
 		return blogConverter.convertToDTO(blogEntity);
 	}
 
@@ -58,6 +62,7 @@ public class BlogService implements IBlogService{
 			blogEntity.setTags(tags);
 			blogEntity.setCategorys(categorys);	
 			blogEntity = blogRepository.save(blogEntity);	
+			blogEntity.setViews(0L);
 			return blogConverter.convertToDTO(blogEntity);
 		} else {
 			BlogEntity oldBlogEntity = blogRepository.findOne(model.getId());
@@ -69,6 +74,7 @@ public class BlogService implements IBlogService{
 			newBlog.setModifiedDate(new Date());
 			newBlog.setTags(tags);
 			newBlog.setCategorys(categorys);	
+			newBlog.setViews(0L);
 			newBlog = blogRepository.save(newBlog);	
 			return blogConverter.convertToDTO(blogEntity);
 		}		
@@ -83,10 +89,8 @@ public class BlogService implements IBlogService{
 		List<BlogEntity> blogEntities = blogOutPut.getBlogEntitys();
 		for(BlogEntity blogEntity : blogEntities) {
 			BlogDTO blogDTO = blogConverter.convertToDTO(blogEntity);
-			//get category name
 			StringBuilder categoryName = getCategoryList(blogEntity);
 			blogDTO.setCategoryName(categoryName.toString());
-			//get tag name
 			StringBuilder tagName = getTagName(blogEntity);
 			blogDTO.setTagName(tagName.toString());
 			blogOutPut.getBlogDTOs().add(blogDTO);
@@ -134,5 +138,34 @@ public class BlogService implements IBlogService{
 			}
 			blogRepository.delete(blogEntity);
 		}
+	}
+
+	@Override
+	public List<BlogDTO> postPopulars() {
+		List<BlogEntity> postPopulars = blogRepository.postPopulars();
+		List<BlogDTO> result = new ArrayList<BlogDTO>();
+		for(BlogEntity blogEntity : postPopulars) {
+			BlogDTO blogDTO = blogConverter.convertToDTO(blogEntity);
+			result.add(blogDTO);
+		}
+		return result;
+	}
+
+	
+	@Override
+	public BlogDTO aboutMe() {
+		BlogEntity blogEntity = blogRepository.aboutMe(SystemConstant.CODE_ABOUT_ME);
+		return blogConverter.convertToDTO(blogEntity);
+	}
+
+	@Override
+	public List<BlogDTO> sliders() {
+		List<BlogEntity> slider = blogRepository.sliders(SystemConstant.ACTIVE_STATUS);
+		List<BlogDTO> result = new ArrayList<BlogDTO>();
+		for(BlogEntity blogEntity : slider) {
+			BlogDTO blogDTO = blogConverter.convertToDTO(blogEntity);
+			result.add(blogDTO);
+		}
+		return result;
 	}	
 }
