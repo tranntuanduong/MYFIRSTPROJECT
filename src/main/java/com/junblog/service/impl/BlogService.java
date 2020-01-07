@@ -81,6 +81,7 @@ public class BlogService implements IBlogService{
 	}
 	
 	@Override
+	@Transactional
 	public BlogOutPut findAll(BlogSearchBuilder builder, Pageable pageable) {
 	
 		BlogOutPut blogOutPut = blogRepository.findAll(builder, pageable);
@@ -141,6 +142,7 @@ public class BlogService implements IBlogService{
 	}
 
 	@Override
+	@Transactional
 	public List<BlogDTO> postPopulars() {
 		List<BlogEntity> postPopulars = blogRepository.postPopulars();
 		List<BlogDTO> result = new ArrayList<BlogDTO>();
@@ -153,12 +155,14 @@ public class BlogService implements IBlogService{
 
 	
 	@Override
+	@Transactional
 	public BlogDTO aboutMe() {
 		BlogEntity blogEntity = blogRepository.aboutMe(SystemConstant.CODE_ABOUT_ME);
 		return blogConverter.convertToDTO(blogEntity);
 	}
 
 	@Override
+	@Transactional
 	public List<BlogDTO> sliders() {
 		List<BlogEntity> slider = blogRepository.sliders(SystemConstant.ACTIVE_STATUS);
 		List<BlogDTO> result = new ArrayList<BlogDTO>();

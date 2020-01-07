@@ -1,11 +1,4 @@
-<%-- <link rel="stylesheet" href="<c:url value ='template/admin/font/font-awesome.min.css' />"/>
-	<link rel="stylesheet" href="<c:url value ='template/admin/assets/css/bootstrap.min.css' />"/>
-	<link rel="stylesheet" href="<c:url value ='template/admin/assets/font-awesome/4.5.0/css/font-awesome.min.css' />"/>
-	<link rel="stylesheet" href="<c:url value ='template/admin/assets/css/fonts.googleapis.com.css' />"/>
-	<link rel="stylesheet" href="<c:url value ='template/admin/assets/css/ace.min.css'/>"class="ace-main-stylesheet" id="main-ace-style" />
-	<link rel="stylesheet" href="<c:url value ='template/admin/assets/css/ace-skins.min.css' />"/>
-	<link rel="stylesheet" href="<c:url value ='template/admin/assets/css/ace-rtl.min.css' />"/> --%>
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
 
@@ -15,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><dec:title default="Trang chủ" /></title>
 
-    <!-- jquery -->
+    <!-- JQUERY -->
     <script type='text/javascript' src='<c:url value="/template/admin/assets/js/jquery-2.1.4.min.js" />'></script>
 
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/css/bootstrap.min.css' />" />
@@ -23,10 +16,10 @@
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/css/ace.min.css' />" class="ace-main-stylesheet" id="main-ace-style" />
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    
-    <!-- ckeditor -->
-    <script src="<c:url value='/template/ckeditor/ckeditor.js' />"></script>
- 	<script src="<c:url value='/template/admin/assets/js/ace.min.js' />"></script>
+    <script src="<c:url value='/template/admin/assets/js/ace.min.js' />"></script>
+    <!-- CKEDITOR -->
+    <script src="<c:url value='/template/ckeditor1/ckeditor.js' />"></script>	
+ 
 </head>
 <body class="no-skin">
 

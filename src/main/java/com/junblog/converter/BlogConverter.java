@@ -17,7 +17,6 @@ public class BlogConverter {
 	public BlogEntity convertToEntity(BlogDTO blogDTO) {
 		ModelMapper modelMapper = new ModelMapper();
 		BlogEntity result = modelMapper.map(blogDTO, BlogEntity.class);
-	
 		return result;
 	}
 }

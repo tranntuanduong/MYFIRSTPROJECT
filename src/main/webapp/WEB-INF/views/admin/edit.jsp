@@ -9,8 +9,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Edit - Blog</title>
+
 </head>
+
 <body>
+
 	<div class="main-content">
 		<div class="main-content-inner">
 			<div class="breadcrumbs ace-save-state" id="breadcrumbs">
@@ -160,11 +163,9 @@
 									<div class="fg-line">										
 										<textarea name="content" id="content">${blogDetail.content}</textarea>
 									</div>
-								</div>
-							</div>
+								</div>								  
+							</div>  
 							<input type="hidden" name="id" value="${model.id}" id="blogId"/>
-							
-							
 							</form:form>
 								
 							<div class="form-group">
@@ -193,6 +194,7 @@
 	$(document).ready(function(){
 		editor = CKEDITOR.replace('content');
 	});
+	
 	
 	$( "#btnAddOrUpdateBlog" ).click(function() {
 	  	addOrUpdateBlog();
@@ -273,7 +275,6 @@
 	   return false;
 	});
 </script>
-
 </body>
 </html>
 

@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>JunBlog-Home</title>
 <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
 	<!--code-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -31,9 +30,12 @@
     <link rel="stylesheet" href="template/web/fonts/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="template/web/fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="template/web/fonts/flaticon/font/flaticon.css">
-    
     <!-- Theme Style -->
-    <link rel="stylesheet" href="template/web/css/style.css">
+    <link rel="stylesheet" href="template/web/css/style.css">   
+    <!-- ckeditor code snippet -->
+    <link rel="stylesheet" href="<c:url value='/template/ckeditor1/monokai_sublime.css' />" />		
+    <script src="<c:url value='/template/ckeditor1/highlight.pack.js' />"></script>
+	<script>hljs.initHighlightingOnLoad();</script> 	
 </head>
 <body>
 <div class="wrap">

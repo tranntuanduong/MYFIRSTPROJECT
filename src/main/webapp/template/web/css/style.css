@@ -1,11 +1,11 @@
 
 body {
-  background: #ccc url("../images/photography.png") repeat;
+  background: #613333 url("../images/photography.png") repeat;
   font-family: "Inconsolata", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-weight: 300;
   font-size: 18px;
   line-height: 1.9;
-  color: #6c757d; }
+  color: #030608; }
 
 a {
   -webkit-transition: .3s all ease;
@@ -1372,3 +1372,7 @@ blockquote {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+
+
+
